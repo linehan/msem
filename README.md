@@ -1,6 +1,5 @@
 # msem
 
-## Overview
 Provides a convenient interface for creating and controlling shared
 semaphores in the filesystem. There are only three primary operations,
 lock, unlock, and relax (unlock all).
