@@ -15,6 +15,8 @@ file does not exist, it will be created. If the file does exist,
 and does not contain a semaphore with the specified tag, a new
 semaphore will be created inside the file.
 
+Semaphore files are created and stored in `/tmp/sem_*`.
+
 ## Usage:
         SYNOPSIS
         msem
@@ -44,5 +46,5 @@ semaphore will be created inside the file.
 
 
         FILES
-                ~/tmp/sem_*
+                /tmp/sem_*
 
