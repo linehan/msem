@@ -1,0 +1,83 @@
+.TH SEM 1 "JANUARY 2012" Linux "User Manuals"
+.SH NAME
+sem \- simplified shared semaphore interface
+.SH SYNOPSIS
+.B sem 
+.RB "[" "-c"
+.IR "path" " [" "uid" "] [" "initial_value" "]]"
+.RB "[" "-d"
+.IR "path" " [" "uid" "]]"
+.RB "[" "-l|-p"
+.IR "path" " [" "uid" "] [" "timeout" "]]"
+.RB "[" "-u|-v"
+.IR "path" " [" "uid" "]]"
+.RB "[" "-v+"
+.IR "path" " [" "uid" "]]"
+.RB "[" "-f"
+.IR "path" " [" "uid" "]]"
+
+
+.SH DESCRIPTION
+.B sem 
+Provides a convenient interface for creating and
+controlling shared semaphores in the filesystem.
+There are only two primary operations, seize (lock)
+and relax (unlock).
+.BR
+.BR
+A semaphore file can locate multiple semaphores, each referenced 
+by a unique identifier (tag), usually an ASCII character. If the 
+file does not exist, it will be created. If the file does exist, 
+and does not contain a semaphore with the specified tag, a new 
+semaphore will be created inside the file.
+
+.SH OPTIONS
+.TP 10
+.BR
+.BR
+
+.TP 10
+.B -c
+Create a new semaphore.
+.IP ""
+.BR
+.BR
+.TP 10
+.B -d
+Delete an existing semaphore.
+.IP ""
+.BR
+.BR
+.TP 10
+.B -l, -p, --lock
+Lock a semaphore, by decrementing its value by 1.
+.IP ""
+.BR
+.BR
+.TP 10
+.B -u, -v, --unlock
+Unlock a semaphore, by incrementing its value by 1. The next
+process in the waiting queue will be able to proceed.
+.IP ""
+.BR
+.BR
+.TP 10
+.B -u+, -v+, --relax
+Any processes which have locked the semaphore will be released, as
+though the semaphore had been incremented for all of them.
+.BR
+.BR
+.TP 10
+.B -f, --follow
+Continuously print the status of a semaphore
+to
+.B stdout.
+(similar to tail -f).
+
+.SH FILES
+.I ~/tmp/sem_*
+.RS
+
+.SH AUTHORS
+.TP
+Jason Linehan <jason@linehan.me>
