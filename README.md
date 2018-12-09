@@ -43,8 +43,3 @@ Semaphore files are created and stored in `/tmp/sem_*`.
         -f --follow <path> [uid]
                 Continuously print the status of a semaphore to stdout
                 (similar to tail -f)
-
-
-        FILES
-                /tmp/sem_*
-
