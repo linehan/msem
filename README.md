@@ -19,10 +19,10 @@ semaphore will be created inside the file.
         SYNOPSIS
         msem
 
-        -c <path> [uid] [initial_value]
+        -c, --create <path> [uid] [initial_value]
                 Create a new semaphore
 
-        -d <path> [uid]
+        -d, --delete <path> [uid]
                 Delete an existing semaphore
 
         -l, -p, --lock <path> [uid] [timeout]
