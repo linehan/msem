@@ -21,8 +21,8 @@ This provides a simple way to coordinate clients in a long-poll based solution, 
 - Performs all operations in kernel space without a context switch
 ### Disadvantages
 - Unless shared memory is used, the file descriptor must be on a single server
-- Not POSIX-compliant
 - Latency for waking processes depending on configuration
+- Not POSIX-compliant
 
 ## Semaphore files
 A semaphore file can locate multiple semaphores, each referenced
