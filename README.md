@@ -10,16 +10,15 @@ which ship with the Linux kernel.
 ## Rationale
 A common problem in web development is how to provide synchronized interactive
 behavior to a number of distributed clients without wasting the resources of
-the web server. Websockets and `epoll` are solutions, however the solution 
-given here has all the advantages of using a file descriptor (like `epoll`) 
-with the additional benefits of
+the web server. Websockets and `epoll` are solutions, however System V semaphores 
+have some unique **advantages**, including:
 
 - Naturally enforcing queue behavior
 - Sleeping processes when they are waiting in the queue
 - Providing a timeout after which a process will disappear from the queue
 - Performing all these operations in kernel space without necessitating a context switch
         
-And the downsides
+And the **downsides**
 
 - Unless shared memory is used, the file descriptor must be on a single server
 - Not POSIX-compliant
