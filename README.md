@@ -7,6 +7,26 @@ lock, unlock, and relax (unlock all).
 Requires System V UNIX semaphores, which are not POSIX-compliant but
 which ship with the Linux kernel.
 
+## Rationale
+A common problem in web development is how to provide synchronized interactive
+behavior to a number of distributed clients in real-time. Websockets and `epoll`
+are solutions, however the solution given here is ideal for long-polling with
+with limited server resources.
+
+System V semaphores can support a form of kernel queue, in which locked
+processes are put to sleep until they are popped from the queue. This allows
+subscribers to an event feed to remain at the server until a timeout occurs,
+or until a controller process (typically another web request which alters
+state) flushes the semaphore and unwinds the queue.
+
+This provides a simple way to coordinate clients in a long-poll based solution,
+and has been validated in years of production use.
+
+### Caution
+While System V semaphores are commonly available, note that they are *not*
+POSIX-compliant, and that there may be better solutions depending on your
+operating requirements.
+
 ## Semaphore files
 A semaphore file can locate multiple semaphores, each referenced
 by a unique identifier (tag), usually an ASCII character. If the
