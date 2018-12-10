@@ -14,16 +14,16 @@ the web server. Websockets and `epoll` are solutions, however the solution
 given here has all the advantages of using a file descriptor (like `epoll`) 
 with the additional benefits of
 
-        1. Naturally enforcing queue behavior
-        2. Sleeping processes when they are waiting in the queue
-        3. Providing a timeout after which a process will disappear from the queue
-        4. Performing all these operations in kernel space without necessitating a context switch
+- Naturally enforcing queue behavior
+- Sleeping processes when they are waiting in the queue
+- Providing a timeout after which a process will disappear from the queue
+- Performing all these operations in kernel space without necessitating a context switch
         
 And the downsides
 
-        1. Unless shared memory is used, the file descriptor must be on a single server
-        2. Not POSIX-compliant
-        3. Latency for waking processes depending on configuration
+- Unless shared memory is used, the file descriptor must be on a single server
+- Not POSIX-compliant
+- Latency for waking processes depending on configuration
 
 System V semaphores can support a form of kernel queue, in which locked
 processes are put to sleep until they are popped from the queue. This allows
