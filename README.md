@@ -11,20 +11,8 @@ which ship with the Linux kernel.
 A common problem in web development is how to provide synchronized interactive
 behavior to a number of distributed clients without wasting the resources of
 the web server. Websockets and `epoll` are solutions, however System V semaphores 
-have some unique **advantages**, including:
+are also interesting.
 
-- Naturally enforcing queue behavior
-- Sleeping processes when they are waiting in the queue
-- Providing a timeout after which a process will disappear from the queue
-- Performing all these operations in kernel space without necessitating a context switch
-        
-And the **downsides**
-
-- Unless shared memory is used, the file descriptor must be on a single server
-- Not POSIX-compliant
-- Latency for waking processes depending on configuration
-
-### System V semaphores
 System V semaphores can support a form of kernel queue, in which locked
 processes are put to sleep until they are popped from the queue. This allows
 subscribers to an event feed to remain at the server until a timeout occurs,
@@ -33,6 +21,16 @@ state) flushes the semaphore and unwinds the queue.
 
 This provides a simple way to coordinate clients in a long-poll based solution,
 and has been validated in years of production use.
+
+### Advantages
+- Naturally enforces queue behavior
+- Processes sleep when they are waiting in the queue
+- Provides a timeout after which a process will disappear from the queue
+- Performs all operations in kernel space without a context switch
+### Disadvantages
+- Unless shared memory is used, the file descriptor must be on a single server
+- Not POSIX-compliant
+- Latency for waking processes depending on configuration
 
 ## Semaphore files
 A semaphore file can locate multiple semaphores, each referenced
