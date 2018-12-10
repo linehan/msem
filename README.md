@@ -34,11 +34,6 @@ state) flushes the semaphore and unwinds the queue.
 This provides a simple way to coordinate clients in a long-poll based solution,
 and has been validated in years of production use.
 
-### Caution
-While System V semaphores are commonly available, note that they are *not*
-POSIX-compliant, and that there may be better solutions depending on your
-operating requirements.
-
 ## Semaphore files
 A semaphore file can locate multiple semaphores, each referenced
 by a unique identifier (tag), usually an ASCII character. If the
