@@ -24,7 +24,7 @@ And the **downsides**
 - Not POSIX-compliant
 - Latency for waking processes depending on configuration
 
-### Systen V semaphores
+### System V semaphores
 System V semaphores can support a form of kernel queue, in which locked
 processes are put to sleep until they are popped from the queue. This allows
 subscribers to an event feed to remain at the server until a timeout occurs,
