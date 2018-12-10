@@ -9,9 +9,14 @@ which ship with the Linux kernel.
 
 ## Rationale
 A common problem in web development is how to provide synchronized interactive
-behavior to a number of distributed clients in real-time. Websockets and `epoll`
-are solutions, however the solution given here is ideal for long-polling with
-with limited server resources.
+behavior to a number of distributed clients without wasting the resources of
+the web server. Websockets and `epoll` are solutions, however the solution 
+given here has all the advantages of using a file descriptor (like `epoll`) 
+with the additional benefits of
+        1. Naturally enforcing queue behavior
+        2. Sleeping processes when they are waiting in the queue
+        3. Providing a timeout after which a process will disappear from the queue
+        4. Performing all these operations in kernel space without necessitating a context switch
 
 System V semaphores can support a form of kernel queue, in which locked
 processes are put to sleep until they are popped from the queue. This allows
